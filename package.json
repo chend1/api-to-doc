@@ -1,0 +1,10 @@
+{
+  "name": "api-doc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "apidoc": "apidoc -i routers/ -o apidoc/",
+    "build": "vuepress build src"
+  }
+}
