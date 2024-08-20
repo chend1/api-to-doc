@@ -1,10 +1,18 @@
 {
-  "name": "api-doc",
+  "name": "api-to-doc",
   "version": "1.0.0",
+  "description": "api to doc",
   "main": "index.js",
+  "repository": "https://github.com/chend1/api-to-doc.git",
+  "author": "chend1 <1752837807@qq.com>",
   "license": "MIT",
+  "keywords": [
+    "apidoc",
+    "api",
+    "doc"
+  ],
   "scripts": {
-    "apidoc": "apidoc -i routers/ -o apidoc/",
-    "build": "vuepress build src"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "apidoc": "node ./index.js -i src -o docs"
   }
 }

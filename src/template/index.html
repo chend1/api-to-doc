@@ -6,6 +6,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="./assest/css/base.css" />
     <link rel="stylesheet" href="./assest/css/index.css" />
+    <script type="module">
+      import { randerMenu } from './assest/js/index.js'
+      import { readJson } from './assest/js/util.js'
+      readJson('./data.json').then((res) => {
+        randerMenu(res)
+      })
+    </script>
   </head>
   <body>
     <div class="box">
@@ -284,17 +291,13 @@
           <div class="api-option">
             <div class="label">备注：</div>
             <ul>
-              <li>描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述</li>
+              <li>
+                描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <script src="./assest/js/util.js"></script>
-    <script src="./data.js"></script>
-    <script src="./assest/js/index.js"></script>
-    <script>
-      randerMenu(menuList)
-    </script>
   </body>
 </html>
