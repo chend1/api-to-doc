@@ -16,6 +16,80 @@ const findFile = (filePath, callback, isContinue = false) => {
   callback()
 }
 
+const getMenuList = (list) => {
+  const menuList = []
+  const dirList = []
+  const textList = []
+  list.forEach((item, index) => {
+    const id = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
+    item.id = id
+    if (item.group) {
+      const menu = dirList.find((dir) => dir.group === item.group)
+      if (menu) {
+        menu.children.push(item)
+      } else {
+        const id =
+          Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
+        item.id = id
+        dirList.push({
+          group: item.group,
+          groupName: item.groupName,
+          groupParent: item.groupParent,
+          isDir: true,
+          children: [item],
+          id,
+        })
+      }
+    } else {
+      textList.push(item)
+    }
+  })
+  textList.forEach((item) => {
+    const menu = dirList.find((dir) => dir.group === item.groupParent)
+    if (menu) {
+      menu.children.push(item)
+    } else {
+      menuList.push(item)
+    }
+  })
+  const newList = []
+  const newChildren = []
+  dirList.forEach((item) => {
+    if (!item) return
+    if (item.groupParent) {
+      newChildren.push(item)
+    } else {
+      newList.push(item)
+    }
+  })
+  function _findChildren(list, children, navList) {
+    let menuList = []
+    if (!navList) {
+      menuList = list
+    } else {
+      menuList = navList
+    }
+    const newList = []
+    const newChildren = []
+    children.forEach((item) => {
+      const menu = menuList.find((dir) => dir.group === item.groupParent)
+      if (menu) {
+        menu.children.push(item)
+        newList.push(item)
+      } else {
+        newChildren.push(item)
+      }
+    })
+    if (newChildren.length) {
+      _findChildren(newList, newChildren, menuList)
+    }
+    return menuList
+  }
+  const navList = _findChildren(newList, newChildren)
+  console.log([...menuList, ...navList])
+  return [...menuList, ...navList]
+}
+
 export default function createDoc(filePath, outputPath) {
   findFile(filePath, () => {
     const contentList = []
@@ -39,6 +113,7 @@ export default function createDoc(filePath, outputPath) {
           desc: '',
           url: '',
           method: '',
+          apiUrl: '',
         },
         params: [],
         returnParams: [],
@@ -69,6 +144,7 @@ export default function createDoc(filePath, outputPath) {
             break
           case '@apiParam':
             const require = /^\[.*\]$/.test(itemList[2])
+            console.log(require)
             const params = {
               field: itemList[2],
               type: itemList[1],
@@ -105,7 +181,9 @@ export default function createDoc(filePath, outputPath) {
       })
       objList.push(obj)
     })
-    console.log(objList, outputPath)
-    // fs.writeFileSync('./comments.json', JSON.stringify(objList))
+    // console.log(objList, outputPath)
+    const textPath = path.join(__dirname, './template/data.json')
+    const menuList = getMenuList(objList)
+    fs.writeFileSync(textPath, JSON.stringify(menuList))
   })
 }

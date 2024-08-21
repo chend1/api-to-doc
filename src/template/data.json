@@ -3,231 +3,43 @@
     "group": "base",
     "groupName": "",
     "groupParent": "",
-    "info": {
-      "title": "",
-      "desc": "获取用户信息",
-      "url": "/account/info",
-      "method": "{get}",
-      "successExample": "\r\n      HTTP/1.1 200 OK\r\n      {\r\n        \"companyInfo\": {\r\n          \"id\": 1,\r\n          \"name\": \"测试公司\",\r\n          \"account\": \"\",\r\n          \"company_id\": \"\",\r\n          \"avatar\": \"\",\r\n          \"phone\": \"\",\r\n          \"role_id\": \"\",\r\n          \"role_level\": \"\",\r\n          \"show_company_id\": \"\",\r\n         },\r\n        \"info\": {},\r\n        \"menu\": [],\r\n      }\r\n \r\n \r\n "
-    },
-    "params": [],
-    "returnParams": [],
-    "successExample": "",
-    "failExample": "",
-    "id": "1"
-  },
-  {
-    "group": "base",
-    "groupName": "",
-    "groupParent": "",
-    "info": {
-      "title": "登录",
-      "desc": "用户登录",
-      "url": "/login",
-      "method": "{post}",
-      "successExample": "\r\n      HTTP/1.1 200 OK\r\n      {\r\n        \"token\": \"\",\r\n      }\r\n \r\n "
-    },
-    "params": [
-      {
-        "field": "account",
-        "type": "{String}",
-        "desc": "账号\r\n",
-        "require": false,
-        "values": "",
-        "default": ""
-      },
-      {
-        "field": "password",
-        "type": "{String}",
-        "desc": "密码\r\n",
-        "require": false,
-        "values": "",
-        "default": ""
-      }
-    ],
-    "returnParams": [
-      {
-        "type": "{Object}",
-        "filed": "status",
-        "desc": "状态，1:成功，0:失败",
-        "sort": "1"
-      }
-    ],
-    "successExample": "",
-    "failExample": "",
-    "id": "2"
-  },
-  {
-    "group": "base",
-    "groupName": "",
-    "groupParent": "",
-    "info": {
-      "title": "用户注册",
-      "desc": "用户注册",
-      "url": "/register",
-      "method": "{post}"
-    },
-    "params": [
-      {
-        "field": "account",
-        "type": "{String}",
-        "desc": "账号\r\n",
-        "require": false,
-        "values": "",
-        "default": ""
-      },
-      {
-        "field": "password",
-        "type": "{String}",
-        "desc": "密码\r\n",
-        "require": false,
-        "values": "",
-        "default": ""
-      },
-      {
-        "field": "name",
-        "type": "{String}",
-        "desc": "用户名\r\n",
-        "require": false,
-        "values": "",
-        "default": ""
-      },
-      {
-        "field": "[email]",
-        "type": "{String}",
-        "desc": "邮箱\r\n",
-        "require": true,
-        "values": "",
-        "default": ""
-      },
-      {
-        "field": "[phone]",
-        "type": "{String}",
-        "desc": "手机号\r\n",
-        "require": true,
-        "values": "",
-        "default": ""
-      },
-      {
-        "field": "[avatar]",
-        "type": "{String}",
-        "desc": "头像\r\n",
-        "require": true,
-        "values": "\r\n",
-        "default": ""
-      }
-    ],
-    "returnParams": [],
-    "successExample": "",
-    "failExample": "",
-    "id": "3"
-  },
-  {
-    "group": "base",
-    "groupName": "",
-    "groupParent": "",
-    "info": {
-      "title": "编辑用户",
-      "desc": "编辑用户信息",
-      "url": "/account/edit/info",
-      "method": "{post}"
-    },
-    "params": [
-      {
-        "field": "[name]",
-        "type": "{String}",
-        "desc": "用户名\r\n",
-        "require": true,
-        "values": "",
-        "default": ""
-      },
-      {
-        "field": "[email]",
-        "type": "{String}",
-        "desc": "邮箱\r\n",
-        "require": true,
-        "values": "",
-        "default": ""
-      },
-      {
-        "field": "[phone]",
-        "type": "{String}",
-        "desc": "手机号\r\n",
-        "require": true,
-        "values": "",
-        "default": ""
-      },
-      {
-        "field": "[avatar]",
-        "type": "{String}",
-        "desc": "头像\r\n",
-        "require": true,
-        "values": "",
-        "default": ""
-      }
-    ],
-    "returnParams": [],
-    "successExample": "",
-    "failExample": "",
-    "id": "4"
-  },
-  {
-    "group": "base",
-    "groupName": "888",
-    "groupParent": "",
     "isDir": true,
-    "info": {
-      "title": "编辑密码",
-      "desc": "编辑密码",
-      "url": "/account/edit/password",
-      "method": "{post}"
-    },
-    "params": [
-      {
-        "field": "old_password",
-        "type": "{String}",
-        "desc": "旧密码\r\n",
-        "require": false,
-        "values": "",
-        "default": ""
-      },
-      {
-        "field": "password",
-        "type": "{String}",
-        "desc": "新密码\r\n",
-        "require": false,
-        "values": "",
-        "default": ""
-      },
-      {
-        "field": "repeat_password",
-        "type": "{String}",
-        "desc": "重复密码\r\n",
-        "require": false,
-        "values": "",
-        "default": ""
-      }
-    ],
-    "returnParams": [],
-    "successExample": "",
-    "failExample": "",
-    "id": "5",
     "children": [
       {
         "group": "base",
         "groupName": "",
         "groupParent": "",
         "info": {
-          "title": "编辑密码",
-          "desc": "编辑密码",
-          "url": "/account/edit/password",
-          "method": "{post}"
+          "title": "",
+          "desc": "获取用户信息",
+          "url": "/account/info",
+          "method": "{get}",
+          "apiUrl": "",
+          "successExample": "\n      HTTP/1.1 200 OK\n      {\n        \"companyInfo\": {\n          \"id\": 1,\n          \"name\": \"测试公司\",\n          \"account\": \"\",\n          \"company_id\": \"\",\n          \"avatar\": \"\",\n          \"phone\": \"\",\n          \"role_id\": \"\",\n          \"role_level\": \"\",\n          \"show_company_id\": \"\",\n         },\n        \"info\": {},\n        \"menu\": [],\n      }\n \n \n "
+        },
+        "params": [],
+        "returnParams": [],
+        "successExample": "",
+        "failExample": "",
+        "id": "m037hgff6bccp"
+      },
+      {
+        "group": "base",
+        "groupName": "",
+        "groupParent": "",
+        "info": {
+          "title": "登录",
+          "desc": "用户登录",
+          "url": "/login",
+          "method": "{post}",
+          "apiUrl": "",
+          "successExample": "\n      HTTP/1.1 200 OK\n      {\n        \"token\": \"\",\n      }\n \n "
         },
         "params": [
           {
-            "field": "old_password",
+            "field": "account",
             "type": "{String}",
-            "desc": "旧密码\r\n",
+            "desc": "账号\n",
             "require": false,
             "values": "",
             "default": ""
@@ -235,15 +47,7 @@
           {
             "field": "password",
             "type": "{String}",
-            "desc": "新密码\r\n",
-            "require": false,
-            "values": "",
-            "default": ""
-          },
-          {
-            "field": "repeat_password",
-            "type": "{String}",
-            "desc": "重复密码\r\n",
+            "desc": "密码\n",
             "require": false,
             "values": "",
             "default": ""
@@ -252,8 +56,176 @@
         "returnParams": [],
         "successExample": "",
         "failExample": "",
-        "id": "6"
+        "id": "m037hgffkvsrg"
+      },
+      {
+        "group": "base",
+        "groupName": "",
+        "groupParent": "",
+        "info": {
+          "title": "用户注册",
+          "desc": "用户注册",
+          "url": "/register",
+          "method": "{post}",
+          "apiUrl": ""
+        },
+        "params": [
+          {
+            "field": "account",
+            "type": "{String}",
+            "desc": "账号\n",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "password",
+            "type": "{String}",
+            "desc": "密码\n",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "name",
+            "type": "{String}",
+            "desc": "用户名\n",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "[email]",
+            "type": "{String}",
+            "desc": "邮箱\n",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "[phone]",
+            "type": "{String}",
+            "desc": "手机号\n",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "[avatar]",
+            "type": "{String}",
+            "desc": "头像\n",
+            "require": true,
+            "values": "\n",
+            "default": ""
+          }
+        ],
+        "returnParams": [],
+        "successExample": "",
+        "failExample": "",
+        "id": "m037hgffi32xc"
+      },
+      {
+        "group": "base",
+        "groupName": "",
+        "groupParent": "",
+        "info": {
+          "title": "编辑用户",
+          "desc": "编辑用户信息",
+          "url": "/account/edit/info",
+          "method": "{post}",
+          "apiUrl": ""
+        },
+        "params": [
+          {
+            "field": "[name]",
+            "type": "{String}",
+            "desc": "用户名\n",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "[email]",
+            "type": "{String}",
+            "desc": "邮箱\n",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "[phone]",
+            "type": "{String}",
+            "desc": "手机号\n",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "[avatar]",
+            "type": "{String}",
+            "desc": "头像\n",
+            "require": true,
+            "values": "",
+            "default": ""
+          }
+        ],
+        "returnParams": [],
+        "successExample": "",
+        "failExample": "",
+        "id": "m037hgffzoa7g"
+      },
+      {
+        "group": "base5",
+        "groupName": "测试",
+        "groupParent": "base",
+        "isDir": true,
+        "children": [
+          {
+            "group": "base5",
+            "groupName": "测试",
+            "groupParent": "base",
+            "info": {
+              "title": "编辑密码",
+              "desc": "编辑密码",
+              "url": "/account/edit/password",
+              "method": "{post}",
+              "apiUrl": ""
+            },
+            "params": [
+              {
+                "field": "old_password",
+                "type": "{String}",
+                "desc": "旧密码\n",
+                "require": false,
+                "values": "",
+                "default": ""
+              },
+              {
+                "field": "password",
+                "type": "{String}",
+                "desc": "新密码\n",
+                "require": false,
+                "values": "",
+                "default": ""
+              },
+              {
+                "field": "repeat_password",
+                "type": "{String}",
+                "desc": "重复密码\n",
+                "require": false,
+                "values": "",
+                "default": ""
+              }
+            ],
+            "returnParams": [],
+            "successExample": "",
+            "failExample": "",
+            "id": "m037hgff1exe6"
+          }
+        ],
+        "id": "m037hgff1exe6"
       }
-    ]
+    ],
+    "id": "m037hgff6bccp"
   }
 ]
