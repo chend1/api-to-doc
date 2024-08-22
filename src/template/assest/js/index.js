@@ -120,6 +120,24 @@ export const randerContent = (content) => {
       </div>
     `
   }
+  if (content.headerParsms && content.headerParsms.length) {
+    contentTemplate += `<div class="api-option">
+    <div class="label">请求头参数：</div>
+      <div class="table">
+        <table>
+          <tr>
+            <th>参数名称</th>
+            <th>参数类型</th>
+            <th>说明</th>
+            <th>必填</th>
+            <th>默认值</th>
+            <th>可选值</th>
+          </tr>
+          ${getTableTemplate(content.headerParsms)}
+        </table>
+      </div>
+    </div>`
+  }
   contentTemplate += `<div class="api-option">
     <div class="label">请求参数：</div>
       <div class="table">
@@ -155,10 +173,24 @@ export const randerContent = (content) => {
             <th>参数类型</th>
             <th>说明</th>
           </tr>
-          ${getTableTemplate(content.returnParams, true)}
+          ${getTableTemplate(content.returnParams, 'return')}
         </table>
       </div>
     </div>`
+  if (content.codeList && content.codeList.length) {
+    contentTemplate += `<div class="api-option">
+    <div class="label">错误代码code 类型说明：</div>
+      <div class="table">
+        <table>
+          <tr>
+            <th>code值</th>
+            <th>说明</th>
+          </tr>
+          ${getTableTemplate(content.returnParams, 'code')}
+        </table>
+      </div>
+    </div>`
+  }
   if (content.remark) {
     contentTemplate += `
       <div class="api-option">
@@ -187,7 +219,10 @@ const searchMenu = (menuList, keyword) => {
     list.forEach((item) => {
       if (item.isDir) {
         let option = []
-        if (item.groupName.indexOf(keyword) > -1 || item.group.indexOf(keyword) > -1) {
+        if (
+          item.groupName.indexOf(keyword) > -1 ||
+          item.group.indexOf(keyword) > -1
+        ) {
           option = [item]
         } else {
           if (item.children && item.children.length) {
@@ -210,40 +245,59 @@ const searchMenu = (menuList, keyword) => {
 const searchMenuClick = () => {
   const keyword = document.querySelector('#search').value
   const menuList = searchMenu(localMenuList, keyword)
-  console.log('menuList', menuList);
+  console.log('menuList', menuList)
   randerMenu(menuList, true)
 }
 
-const getTableTemplate = (params, isReturn) => {
+const getTableTemplate = (params, type) => {
   let template = ''
-  if (!isReturn) {
-    params.forEach((item) => {
-      template += `
-        <tr>
-          <td>${item.field}</td>
-          <td>${item.type}</td>
-          <td>${item.desc}</td>
-          <td>${item.require ? '是' : '否'}</td>
-          <td>${item.values}</td>
-          <td>${item.default}</td>
-        </tr>
-      `
-    })
-  } else {
-    params.forEach((item) => {
-      const level = parseInt(item.level)
-      let unit = ''
-      for (let i = 0; i < level; i++) {
-        unit += '+'
+  switch (type) {
+    case 'code':
+      {
+        params.forEach((item) => {
+          template += `
+            <tr>
+              <td>${item.code}</td>
+              <td>${item.desc}</td>
+            </tr>
+          `
+        })
       }
-      template += `
-        <tr>
-          <td>${unit}${item.filed}</td>
-          <td>${item.type}</td>
-          <td>${item.desc}</td>
-        </tr>
-      `
-    })
+      break
+    case 'return':
+      {
+        params.forEach((item) => {
+          const level = parseInt(item.level)
+          let unit = ''
+          for (let i = 0; i < level; i++) {
+            unit += '+'
+          }
+          template += `
+            <tr>
+              <td>${unit}${item.filed}</td>
+              <td>${item.type}</td>
+              <td>${item.desc}</td>
+            </tr>
+          `
+        })
+      }
+      break
+    default:
+      {
+        params.forEach((item) => {
+          template += `
+          <tr>
+            <td>${item.field}</td>
+            <td>${item.type}</td>
+            <td>${item.desc}</td>
+            <td>${item.require ? '是' : '否'}</td>
+            <td>${item.values}</td>
+            <td>${item.default}</td>
+          </tr>
+        `
+        })
+      }
+      break
   }
   return template
 }
@@ -262,7 +316,7 @@ const addEvent = function () {
       item.classList.add('active')
       menuClick(menu)
     }
-    item.removeEventListener('click',fn)
+    item.removeEventListener('click', fn)
     item.addEventListener('click', fn)
   })
   const dirList = document.querySelectorAll('.nav-list .dir')

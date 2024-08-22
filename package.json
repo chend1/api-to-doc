@@ -17,7 +17,7 @@
     "apitodoc": "node ./lib/main.js -i routers -o apidoc"
   },
   "bin": {
-    "apidoc": "./lib/main.js"
+    "apitodoc": "./lib/main.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.8",

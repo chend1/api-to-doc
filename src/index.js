@@ -19,19 +19,19 @@ const findFile = (filePath, callback, isContinue = false) => {
 
 function copyFolderContents(src, dest) {
   if (!fs.existsSync(dest)) {
-    fs.mkdirSync(dest);
+    fs.mkdirSync(dest)
   }
 
-  fs.readdirSync(src).forEach(file => {
-    const srcPath = path.join(src, file);
-    const destPath = path.join(dest, file);
+  fs.readdirSync(src).forEach((file) => {
+    const srcPath = path.join(src, file)
+    const destPath = path.join(dest, file)
 
     if (fs.statSync(srcPath).isDirectory()) {
-      copyFolderContents(srcPath, destPath);
+      copyFolderContents(srcPath, destPath)
     } else {
-      fs.copyFileSync(srcPath, destPath);
+      fs.copyFileSync(srcPath, destPath)
     }
-  });
+  })
 }
 
 const getMenuList = (list) => {
@@ -108,7 +108,7 @@ const getMenuList = (list) => {
   return [...menuList, ...navList]
 }
 
-export default function createDoc(filePath, outputPath) {
+export default function createDoc(filePath, outputPath, apiBaseInfo) {
   findFile(filePath, () => {
     const contentList = []
     fileList.forEach((file) => {
@@ -120,7 +120,7 @@ export default function createDoc(filePath, outputPath) {
         contentList.push(...comments)
       }
     })
-    const objList = []
+    let objList = []
     contentList.forEach((content) => {
       const obj = {
         group: '',
@@ -135,50 +135,70 @@ export default function createDoc(filePath, outputPath) {
         },
         params: [],
         returnParams: [],
+        headerParsms: [],
         successExample: '',
         failExample: '',
+        codeList: [],
+        api_key: '',
+        remark: '',
       }
       const reg = /@api[^@]*(?=@|\*\/)/g
       const list = content.match(reg)
       list.forEach((option) => {
-        const item = option.replaceAll('*', '')
+        const item = option.replaceAll('*', '').replace(/\s+/g, ' ')
         const itemList = item.split(' ')
-        const type = itemList[0].trim()
+        const type = itemList[0]
         switch (type) {
           case '@api':
-            obj.info.title = itemList[3].trim()
-            obj.info.url = itemList[2].trim()
-            obj.info.method = itemList[1].trim()
+            obj.info.title = itemList[3]
+            obj.info.url = itemList[2]
+            obj.info.method = itemList[1]
+            break
+          case '@apiKey':
+            obj.api_key = itemList[1] || ''
             break
           case '@apiDescription':
-            obj.info.desc = itemList[1].trim()
+            obj.info.desc = itemList[1] || ''
             break
           case '@apiGroup':
-            obj.group = itemList[1].trim()
-            obj.groupName = itemList[2].trim()
+            obj.group = itemList[1] || ''
+            obj.groupName = itemList[2] || ''
             break
           case '@apiGroupParent':
-            obj.groupParent = itemList[1].trim()
+            obj.groupParent = itemList[1] || ''
+            break
+          case '@apiHeaderParam':
+            {
+              const require = /^\[.*\]$/.test(itemList[2])
+              const params = {
+                field: itemList[2].replace(/[\[\]]/g, ''),
+                type: itemList[1].replace(/[\{\}]/g, ''),
+                desc: itemList[3],
+                require,
+                values: itemList[4] || '',
+                default: itemList[5] || '',
+              }
+              obj.headerParsms.push(params)
+            }
             break
           case '@apiParam':
             const require = /^\[.*\]$/.test(itemList[2])
-            console.log(require)
             const params = {
-              field: itemList[2],
-              type: itemList[1],
+              field: itemList[2].replace(/[\[\]]/g, ''),
+              type: itemList[1].replace(/[\{\}]/g, ''),
               desc: itemList[3],
               require,
-              values: itemList[4],
-              default: itemList[5],
+              values: itemList[4] || '',
+              default: itemList[5] || '',
             }
             obj.params.push(params)
             break
           case '@apiReturnParam':
             obj.returnParams.push({
-              type: itemList[1].trim(),
-              filed: itemList[2].trim(),
-              desc: itemList[3].trim(),
-              sort: itemList[4].trim(),
+              type: itemList[1].replace(/[\{\}]/g, ''),
+              filed: itemList[2].replace(/[\[\]]/g, ''),
+              desc: itemList[3] || '',
+              sort: itemList[4],
             })
             break
           case '@apiSuccessExample':
@@ -193,6 +213,20 @@ export default function createDoc(filePath, outputPath) {
               obj.info.failExample = example[1]
             }
             break
+          case '@apiCode':
+            {
+              const params = {
+                code: itemList[1],
+                desc: itemList[2],
+              }
+              obj.params.push(params)
+            }
+            break
+          case '@apiRemark':
+            {
+              obj.remark = itemList[1] || ''
+            }
+            break
           default:
             break
         }
@@ -200,9 +234,28 @@ export default function createDoc(filePath, outputPath) {
       objList.push(obj)
     })
     const textPath = path.join(__dirname, './template/data.json')
+    if (apiBaseInfo.order && apiBaseInfo.order.length) {
+      objList.sort((a, b) => {
+        const order = apiBaseInfo.order.indexOf(a.api_key)
+        const order2 = apiBaseInfo.order.indexOf(b.api_key)
+        if(order !== -1 && order2 === -1) return -1
+        if(order === -1 && order2 !== -1) return 1
+        return order - order2
+      })
+    }
     const menuList = getMenuList(objList)
     fs.writeFileSync(textPath, JSON.stringify(menuList))
     // 将template目录下的文件复制到output目录下
+    if (apiBaseInfo.url) {
+      const apiInfo = {
+        info: {
+          title: apiBaseInfo.title,
+          desc: apiBaseInfo.description,
+          apiUrl: apiBaseInfo.url,
+        },
+      }
+      menuList.unshift(apiInfo)
+    }
     const templatePath = path.join(__dirname, './template')
     copyFolderContents(templatePath, outputPath)
   })

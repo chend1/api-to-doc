@@ -1,0 +1,8 @@
+{
+  "name": "api-doc",
+  "version": "0.1.0",
+  "description": "仓库管理系统接口文档",
+  "title": "仓库管理系统接口文档",
+  "url" : "http://localhost:3000/api",
+  "order": ["handlerRegister", "editUserInfo"]
+}
