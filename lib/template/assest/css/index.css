@@ -83,6 +83,12 @@ body .box .left .nav-list > .text .title .icon {
 body .box .left .nav-list > .text .title .icon img {
   width: 100%;
 }
+body .box .left .nav-list > .text .title .name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 body .box .left .nav-list > .text .title:hover {
   background-color: #eee;
 }
@@ -121,6 +127,12 @@ body .box .left .nav-list .item .dir .title .icon {
 }
 body .box .left .nav-list .item .dir .title .icon img {
   width: 100%;
+}
+body .box .left .nav-list .item .dir .title .name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 body .box .left .nav-list .item .dir:hover {
   background-color: #eee;
@@ -161,6 +173,12 @@ body .box .left .nav-list .item .text .title .icon {
 }
 body .box .left .nav-list .item .text .title .icon img {
   width: 100%;
+}
+body .box .left .nav-list .item .text .title .name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 body .box .left .nav-list .item .text .title:hover {
   background-color: #eee;
