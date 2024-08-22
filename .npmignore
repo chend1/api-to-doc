@@ -1,0 +1,10 @@
+.vscode/
+apidoc/
+node_modules/
+src/
+routers/
+.babelrc
+.gitignore
+.npmignore
+main.js
+removeFile.js

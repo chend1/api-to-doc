@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const path = require('path')
 const fs = require('fs')
 
@@ -14,6 +15,23 @@ const findFile = (filePath, callback, isContinue = false) => {
   })
   if (isContinue) return
   callback()
+}
+
+function copyFolderContents(src, dest) {
+  if (!fs.existsSync(dest)) {
+    fs.mkdirSync(dest);
+  }
+
+  fs.readdirSync(src).forEach(file => {
+    const srcPath = path.join(src, file);
+    const destPath = path.join(dest, file);
+
+    if (fs.statSync(srcPath).isDirectory()) {
+      copyFolderContents(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  });
 }
 
 const getMenuList = (list) => {
@@ -181,9 +199,11 @@ export default function createDoc(filePath, outputPath) {
       })
       objList.push(obj)
     })
-    // console.log(objList, outputPath)
     const textPath = path.join(__dirname, './template/data.json')
     const menuList = getMenuList(objList)
     fs.writeFileSync(textPath, JSON.stringify(menuList))
+    // 将template目录下的文件复制到output目录下
+    const templatePath = path.join(__dirname, './template')
+    copyFolderContents(templatePath, outputPath)
   })
 }

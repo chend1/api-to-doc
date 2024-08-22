@@ -1,20 +1,23 @@
 {
   "name": "api-to-doc",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "api to doc",
-  "main": "main.js",
+  "main": "./lib/main.js",
   "repository": "https://github.com/chend1/api-to-doc.git",
   "author": "chend1 <1752837807@qq.com>",
   "license": "MIT",
   "keywords": [
-    "apidoc",
     "api",
-    "doc"
+    "doc",
+    "api-to-doc"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "apidoc": "yarn compile&&node ./lib/main.js -i routers -o apidoc",
-    "compile": "babel src/index.js -d lib&&node ./removeFile.js&& babel main.js -d lib"
+    "compile": "babel src/index.js -d lib&&node ./removeFile.js&& babel main.js -d lib",
+    "apitodoc": "node ./lib/main.js -i routers -o apidoc"
+  },
+  "bin": {
+    "apidoc": "./lib/main.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.8",
