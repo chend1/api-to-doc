@@ -141,6 +141,7 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
         codeList: [],
         api_key: '',
         remark: '',
+        title: '',
       }
       const reg = /@api[^@]*(?=@|\*\/)/g
       const list = content.match(reg)
@@ -153,6 +154,9 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
             obj.info.title = itemList[3]
             obj.info.url = itemList[2]
             obj.info.method = itemList[1]
+            break
+          case '@apiTitle':
+            obj.title = itemList[1]
             break
           case '@apiKey':
             obj.api_key = itemList[1] || ''
@@ -272,6 +276,6 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
     // 将template目录下的文件复制到output目录下
     const templatePath = path.join(__dirname, './template')
     copyFolderContents(templatePath, outputPath)
-    console.log('api文档生成成功');
+    console.log('api文档生成成功')
   })
 }

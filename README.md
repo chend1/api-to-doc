@@ -72,9 +72,24 @@ apitodoc -i routers/ -o apidoc/
 | url    | 请求地址 |
 | title  | 请求标题 |
 
+### @apiTitle
+
+- 接口标题
+- 近跟 1 个参数，以空格分隔开
+
+```javascript
+/**
+ * @apiKey title
+ */
+```
+
+| 参数  | 说明                  |
+| ----- | --------------------- |
+| title | 比@api title 优先级高 |
+
 ### @apiKey
 
-- 接口排序 key
+- 用于接口排序的 key
 - 近跟 1 个参数，以空格分隔开
 
 ```javascript

@@ -72,7 +72,7 @@ export const randerMenu = (menuList, isSearch) => {
 export const randerContent = (content) => {
   let contentTemplate = ''
   contentTemplate += `
-  <div class="api-title">${content.info.title || '未命名'}</div>
+  <div class="api-title">${content.title || content.info.title || '未命名'}</div>
   `
   contentTemplate += `<div class="content">`
   contentTemplate += `
