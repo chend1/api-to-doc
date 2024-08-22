@@ -58,7 +58,7 @@ apitodoc -i routers/ -o apidoc/
 ### @api
 
 - 接口基本信息
-- 近跟 3 个参数，以空格分隔开
+- 接收 3 个参数，以空格分隔开
 
 ```javascript
 /**
@@ -75,7 +75,7 @@ apitodoc -i routers/ -o apidoc/
 ### @apiTitle
 
 - 接口标题
-- 近跟 1 个参数，以空格分隔开
+- 接收 1 个参数，以空格分隔开
 
 ```javascript
 /**
@@ -90,7 +90,7 @@ apitodoc -i routers/ -o apidoc/
 ### @apiKey
 
 - 用于接口排序的 key
-- 近跟 1 个参数，以空格分隔开
+- 接收 1 个参数，以空格分隔开
 
 ```javascript
 /**
@@ -105,7 +105,7 @@ apitodoc -i routers/ -o apidoc/
 ### @apiDescription
 
 - 接口描述
-- 近跟 1 个参数，以空格分隔开
+- 接收 1 个参数，以空格分隔开
 
 ```javascript
 /**
@@ -120,7 +120,7 @@ apitodoc -i routers/ -o apidoc/
 ### @apiGroup
 
 - 分组信息
-- 近跟 2 个参数，以空格分隔开
+- 接收 2 个参数，以空格分隔开
 
 ```javascript
 /**
@@ -136,7 +136,7 @@ apitodoc -i routers/ -o apidoc/
 ### @apiGroupParent
 
 - 上级分组对应 @apiGroup group
-- 近跟 1 个参数，以空格分隔开
+- 接收 1 个参数，以空格分隔开
 
 ```javascript
 /**
@@ -151,7 +151,7 @@ apitodoc -i routers/ -o apidoc/
 ### @apiHeaderParam
 
 - 请求头参数
-- 近跟 5 个参数，以空格分隔开
+- 接收 5 个参数，以空格分隔开
 
 ```javascript
 /**
@@ -170,7 +170,7 @@ apitodoc -i routers/ -o apidoc/
 ### @apiParam
 
 - 接口参数
-- 近跟 5 个参数，以空格分隔开
+- 接收 5 个参数，以空格分隔开
 
 ```javascript
 /**
@@ -189,7 +189,7 @@ apitodoc -i routers/ -o apidoc/
 ### @apiReturnParam
 
 - 返回参数
-- 近跟 4 个参数，以空格分隔开
+- 接收 4 个参数，以空格分隔开
 
 ```javascript
 /**
@@ -238,7 +238,7 @@ apitodoc -i routers/ -o apidoc/
 ### @apiCode
 
 - 返回参数
-- 近跟 2 个参数，以空格分隔开
+- 接收 2 个参数，以空格分隔开
 
 ```javascript
 /**
@@ -254,7 +254,7 @@ apitodoc -i routers/ -o apidoc/
 ### @apiRemark
 
 - 接口请求失败示例
-- 近跟 1 个参数，以空格分隔开
+- 接收 1 个参数，以空格分隔开
 
 ```javascript
 /**
