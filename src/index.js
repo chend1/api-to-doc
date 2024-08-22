@@ -238,14 +238,12 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
       objList.sort((a, b) => {
         const order = apiBaseInfo.order.indexOf(a.api_key)
         const order2 = apiBaseInfo.order.indexOf(b.api_key)
-        if(order !== -1 && order2 === -1) return -1
-        if(order === -1 && order2 !== -1) return 1
+        if (order !== -1 && order2 === -1) return -1
+        if (order === -1 && order2 !== -1) return 1
         return order - order2
       })
     }
     const menuList = getMenuList(objList)
-    fs.writeFileSync(textPath, JSON.stringify(menuList))
-    // 将template目录下的文件复制到output目录下
     if (apiBaseInfo.url) {
       const apiInfo = {
         info: {
@@ -253,9 +251,22 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
           desc: apiBaseInfo.description,
           apiUrl: apiBaseInfo.url,
         },
+        group: '',
+        groupName: '',
+        groupParent: '',
+        params: [],
+        returnParams: [],
+        headerParsms: [],
+        successExample: '',
+        failExample: '',
+        codeList: [],
+        api_key: '',
+        remark: '',
       }
       menuList.unshift(apiInfo)
     }
+    fs.writeFileSync(textPath, JSON.stringify(menuList))
+    // 将template目录下的文件复制到output目录下
     const templatePath = path.join(__dirname, './template')
     copyFolderContents(templatePath, outputPath)
   })

@@ -8,3 +8,4 @@ routers/
 .npmignore
 main.js
 removeFile.js
+apitodoc.json
