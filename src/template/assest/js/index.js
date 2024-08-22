@@ -246,7 +246,7 @@ const searchMenu = (menuList, keyword) => {
 const searchMenuClick = () => {
   const keyword = document.querySelector('#search').value
   const menuList = searchMenu(localMenuList, keyword)
-  console.log('menuList', menuList)
+  // console.log('menuList', menuList)
   randerMenu(menuList, true)
 }
 

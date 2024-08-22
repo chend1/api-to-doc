@@ -104,7 +104,7 @@ const getMenuList = (list) => {
     return menuList
   }
   const navList = _findChildren(newList, newChildren)
-  console.log([...menuList, ...navList])
+  // console.log([...menuList, ...navList])
   return [...menuList, ...navList]
 }
 
@@ -194,12 +194,15 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
             obj.params.push(params)
             break
           case '@apiReturnParam':
-            obj.returnParams.push({
-              type: itemList[1].replace(/[\{\}]/g, ''),
-              filed: itemList[2].replace(/[\[\]]/g, ''),
-              desc: itemList[3] || '',
-              sort: itemList[4],
-            })
+            {
+              const params = {
+                type: itemList[1].replace(/[\{\}]/g, ''),
+                filed: itemList[2].replace(/[\[\]]/g, ''),
+                desc: itemList[3] || '',
+                sort: itemList[4],
+              }
+              obj.returnParams.push(params)
+            }
             break
           case '@apiSuccessExample':
             {
@@ -219,7 +222,7 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
                 code: itemList[1],
                 desc: itemList[2],
               }
-              obj.params.push(params)
+              obj.codeList.push(params)
             }
             break
           case '@apiRemark':
@@ -269,5 +272,6 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
     // 将template目录下的文件复制到output目录下
     const templatePath = path.join(__dirname, './template')
     copyFolderContents(templatePath, outputPath)
+    console.log('api文档生成成功');
   })
 }
