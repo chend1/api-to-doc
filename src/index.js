@@ -38,8 +38,31 @@ const getMenuList = (list) => {
   const menuList = []
   const dirList = []
   const textList = []
+  const parentList = list.filter(
+    (item) => item.groupParent && item.groupParent !== item.group
+  )
+  parentList.forEach((item) => {
+    const dirInfo = list.find((dir) => dir.group === item.groupParent)
+    if (!dirInfo) {
+      const id =
+        Date.now().toString(36) + Math.random().toString(36).substring(2, 5)
+      item.id = id
+      dirList.push({
+        group: item.groupParent,
+        groupName: item.groupParentName || item.groupParent,
+        groupParent: item.groupParent,
+        isDir: true,
+        children: [],
+        id,
+      })
+    }
+  })
   list.forEach((item, index) => {
-    const id = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
+    if (item.group === item.groupParent) {
+      item.groupParent = null
+    }
+    const id =
+      Date.now().toString(36) + Math.random().toString(36).substring(2, 5)
     item.id = id
     if (item.group) {
       const menu = dirList.find((dir) => dir.group === item.group)
@@ -47,7 +70,7 @@ const getMenuList = (list) => {
         menu.children.push(item)
       } else {
         const id =
-          Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
+          Date.now().toString(36) + Math.random().toString(36).substring(2, 5)
         item.id = id
         dirList.push({
           group: item.group,
@@ -126,6 +149,7 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
         group: '',
         groupName: '',
         groupParent: '',
+        groupParentName: '',
         info: {
           title: '',
           desc: '',
@@ -170,6 +194,7 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
             break
           case '@apiGroupParent':
             obj.groupParent = itemList[1] || ''
+            obj.groupParentName = itemList[2] || ''
             break
           case '@apiHeaderParam':
             {
