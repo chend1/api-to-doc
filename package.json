@@ -1,6 +1,6 @@
 {
   "name": "api-to-doc",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "api to doc",
   "main": "./lib/main.js",
   "repository": "https://github.com/chend1/api-to-doc.git",
