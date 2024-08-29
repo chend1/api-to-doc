@@ -35,8 +35,11 @@ function copyFolderContents(src, dest) {
 }
 
 const getMenuList = (list) => {
+  // 完成菜单机构改造的部分菜单列表
   const menuList = []
+  // 获取所有父级菜单
   const dirList = []
+  // 获取所有文本菜单
   const textList = []
   const parentList = list.filter(
     (item) => item.groupParent && item.groupParent !== item.group
@@ -44,6 +47,8 @@ const getMenuList = (list) => {
   parentList.forEach((item) => {
     const dirInfo = list.find((dir) => dir.group === item.groupParent)
     if (!dirInfo) {
+      const isDir = dirList.find((dir) => dir.group === item.groupParent)
+      if(isDir) return
       const id =
         Date.now().toString(36) + Math.random().toString(36).substring(2, 5)
       item.id = id
@@ -97,12 +102,13 @@ const getMenuList = (list) => {
   const newChildren = []
   dirList.forEach((item) => {
     if (!item) return
-    if (item.groupParent) {
+    if (item.groupParent && item.groupParent !== item.group) {
       newChildren.push(item)
     } else {
       newList.push(item)
     }
   })
+  // 查询各个文件夹之间的从属关系，并返回最终的菜单列表
   function _findChildren(list, children, navList) {
     let menuList = []
     if (!navList) {
@@ -127,7 +133,6 @@ const getMenuList = (list) => {
     return menuList
   }
   const navList = _findChildren(newList, newChildren)
-  // console.log([...menuList, ...navList])
   return [...menuList, ...navList]
 }
 
