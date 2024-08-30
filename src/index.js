@@ -3,6 +3,7 @@ const path = require('path')
 const fs = require('fs')
 
 const fileList = []
+// 查找文件
 const findFile = (filePath, callback, isContinue = false) => {
   const files = fs.readdirSync(filePath)
   files.forEach((file) => {
@@ -17,6 +18,7 @@ const findFile = (filePath, callback, isContinue = false) => {
   callback()
 }
 
+// 拷贝文件
 function copyFolderContents(src, dest) {
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest)
@@ -34,6 +36,7 @@ function copyFolderContents(src, dest) {
   })
 }
 
+// 获取文档列表
 const getMenuList = (list) => {
   // 完成菜单机构改造的部分菜单列表
   const menuList = []
@@ -48,7 +51,7 @@ const getMenuList = (list) => {
     const dirInfo = list.find((dir) => dir.group === item.groupParent)
     if (!dirInfo) {
       const isDir = dirList.find((dir) => dir.group === item.groupParent)
-      if(isDir) return
+      if (isDir) return
       const id =
         Date.now().toString(36) + Math.random().toString(36).substring(2, 5)
       item.id = id
@@ -136,6 +139,38 @@ const getMenuList = (list) => {
   return [...menuList, ...navList]
 }
 
+// 转换code
+const convertCode = (code, label, type) => {
+  let htmlStr = `<div class="start">${
+    label ? '<span class="label">"' + label + '":</span>' : ''
+  }${type === 'array' ? '[' : '{'}</div>`
+  try {
+    const obj = JSON.parse(code)
+    Object.keys(obj).forEach((key) => {
+      if (typeof obj[key] === 'object') {
+        htmlStr += `<div class="child">`
+        const type = Array.isArray(obj[key]) ? 'array' : 'object'
+        htmlStr += convertCode(JSON.stringify(obj[key]), key, type)
+        htmlStr += `</div>`
+      } else {
+        htmlStr += `
+        <div class="option">
+          <div class="label">"${key}": </div>
+          <div class="value ${typeof obj[key]}">${
+          typeof obj[key] !== 'string' ? obj[key] : JSON.stringify(obj[key])
+        }</div>
+        </div>
+      `
+      }
+    })
+    htmlStr += `<div class="end">${type === 'array' ? ']' : '}'}</div>`
+    return htmlStr
+  } catch (err) {
+    return code
+  }
+}
+
+// 创建文档
 export default function createDoc(filePath, outputPath, apiBaseInfo) {
   findFile(filePath, () => {
     const contentList = []
@@ -241,13 +276,13 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
           case '@apiSuccessExample':
             {
               const example = item.split('Success-Response:')
-              obj.info.successExample = example[1]
+              obj.successExample = convertCode(example[1])
             }
             break
           case '@apiFailExample':
             {
               const example = item.split('Fail-Response:')
-              obj.info.failExample = example[1]
+              obj.failExample = convertCode(example[1])
             }
             break
           case '@apiCode':

@@ -33,7 +33,6 @@ body .box {
   justify-content: space-between;
   overflow: hidden;
   font-size: 14px;
-  --text-height: 0px;
 }
 body .box .left {
   width: 250px;
@@ -313,7 +312,56 @@ body .box .right .api-option .example {
   border-radius: 5px;
   color: #d19a66;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 20px 10px;
+  overflow: auto;
+  font-size: 12px;
+  min-height: 80px;
+}
+body .box .right .api-option .example code {
+  width: 100%;
+  overflow: hidden;
+}
+body .box .right .api-option .example .start,
+body .box .right .api-option .example .end {
+  padding-left: 8px;
+  color: #fff;
+  line-height: 28px;
+}
+body .box .right .api-option .example .start .label,
+body .box .right .api-option .example .end .label {
+  color: #d19a66;
+  margin-right: 8px;
+  font-weight: 400;
+}
+body .box .right .api-option .example .option {
+  max-width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding-left: 20px;
+  line-height: 28px;
+  margin: 0;
+  overflow: hidden;
+}
+body .box .right .api-option .example .option .label {
+  margin-bottom: 0;
+  margin-right: 8px;
+  font-weight: 400;
+}
+body .box .right .api-option .example .option .value {
+  flex: 1;
+  overflow: hidden;
+  color: #98c379;
+  word-wrap: break-word;
+  font-weight: 400;
+}
+body .box .right .api-option .example .option .number {
+  color: #53ca3b;
+}
+body .box .right .api-option .example .option .boolean {
+  color: #56b6c2;
+}
+body .box .right .api-option .example .child {
+  padding-left: 15px;
 }
 ::-webkit-scrollbar {
   width: 5px;
