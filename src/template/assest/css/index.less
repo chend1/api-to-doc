@@ -1,3 +1,20 @@
+.copy-box{
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2ffeb;
+  border-radius: 5px;
+  border: 1px solid #cafab2;
+  span{
+    color: #67c23a;
+  }
+}
 body {
   width: 100%;
   height: 100vh;
@@ -11,7 +28,7 @@ body {
     height: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 80px 0;
+    padding: 60px 0 50px;
     display: flex;
     justify-content: space-between;
     overflow: hidden;
@@ -57,7 +74,7 @@ body {
         width: 100%;
         flex: 1;
         overflow-y: auto;
-        &>.text {
+        & > .text {
           line-height: 32px;
           overflow: hidden;
           transition: all 0.3s;
@@ -78,17 +95,17 @@ body {
                 width: 100%;
               }
             }
-            .name{
+            .name {
               flex: 1;
               overflow: hidden;
               text-overflow: ellipsis;
-              white-space: nowrap
+              white-space: nowrap;
             }
             &:hover {
               background-color: #eee;
             }
           }
-          .active{
+          .active {
             color: #339afc;
           }
         }
@@ -96,6 +113,8 @@ body {
           width: 100%;
           font-size: 14px;
           box-sizing: border-box;
+          height: 32px;
+          overflow: hidden;
           cursor: pointer;
           user-select: none;
           &:hover {
@@ -122,11 +141,11 @@ body {
                   width: 100%;
                 }
               }
-              .name{
+              .name {
                 flex: 1;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                white-space: nowrap
+                white-space: nowrap;
               }
             }
             &:hover {
@@ -147,9 +166,6 @@ body {
           }
           .text {
             line-height: 32px;
-            height: 0px;
-            overflow: hidden;
-            transition: all 0.3s;
             padding-left: 15px;
             .title {
               box-sizing: border-box;
@@ -168,36 +184,29 @@ body {
                   width: 100%;
                 }
               }
-              .name{
+              .name {
                 flex: 1;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                white-space: nowrap
+                white-space: nowrap;
               }
               &:hover {
                 background-color: #eee;
               }
             }
-            .active{
+            .active {
               color: #339afc;
             }
           }
           .item {
             padding-left: 15px;
-            display: none;
           }
         }
         .active {
-          & > .item {
-            display: block;
-          }
           & > .dir {
             &:before {
               transform: rotateZ(90deg);
             }
-          }
-          & > .text {
-            height: var(--text-height);
           }
         }
       }
@@ -215,10 +224,9 @@ body {
       font-size: 14px;
       .api-title {
         width: 100%;
-        height: 70px;
-        line-height: 70px;
+        line-height: 65px;
         text-align: center;
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 600;
         border-bottom: 1px solid #eee;
       }
@@ -244,14 +252,19 @@ body {
             width: 100%;
             tr {
               line-height: 30px;
-              text-align: center;
+              text-align: left;
+              @tablePadding: 10px;
               th {
                 font-weight: 600;
                 background-color: #409eff1a;
                 border: 1px solid #fafafa;
+                padding: 0 @tablePadding;
+                white-space: nowrap;
               }
               td {
                 border: 1px solid #f1f1f1;
+                padding: 0 @tablePadding;
+                max-width: 300px;
               }
             }
           }
@@ -273,7 +286,7 @@ body {
             background-color: #333;
             border-radius: 50%;
           }
-          .url{
+          .url {
             line-height: 26px;
             box-sizing: border-box;
             padding: 0 15px;
@@ -282,7 +295,7 @@ body {
             color: #339afc;
             border-radius: 2px;
           }
-          .copy{
+          .copy {
             margin-left: 10px;
             cursor: pointer;
             font-size: 12px;
@@ -292,7 +305,7 @@ body {
             user-select: none;
             border-radius: 2px;
             padding: 0 8px;
-            &:hover{
+            &:hover {
               background-color: #eee;
             }
           }

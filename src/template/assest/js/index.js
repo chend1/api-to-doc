@@ -2,14 +2,24 @@ import { changeTemplate, findText } from './util.js'
 const apiObj = {}
 const toggleList = (id) => {
   const navItem = document.getElementById(id)
-
   const className = navItem.classList.contains('active') ? 'active' : ''
+  const { height } = navItem.getBoundingClientRect()
   navItem.classList.toggle('active')
-  const children = document.querySelectorAll(`#${id}>.text>.title`)
-  navItem.style.setProperty(
-    '--text-height',
-    className === 'active' ? 0 + 'px' : children.length * 32 + 'px'
-  )
+  navItem.style.transition = 'all .3s'
+  if (className !== 'active') {
+    navItem.style.height = 'auto'
+    const { height } = navItem.getBoundingClientRect()
+    navItem.style.height = '32px'
+    navItem.getBoundingClientRect()
+    navItem.style.height = height + 'px'
+    setTimeout(() => {
+      navItem.style.height = 'auto'
+    }, 300)
+  } else {
+    navItem.style.height = height + 'px'
+    navItem.getBoundingClientRect()
+    navItem.style.height = '32px'
+  }
 }
 
 const menuClick = (item) => {
@@ -72,7 +82,9 @@ export const randerMenu = (menuList, isSearch) => {
 export const randerContent = (content) => {
   let contentTemplate = ''
   contentTemplate += `
-  <div class="api-title">${content.title || content.info.title || '未命名'}</div>
+  <div class="api-title">${
+    content.title || content.info.title || '未命名'
+  }</div>
   `
   contentTemplate += `<div class="content">`
   contentTemplate += `
@@ -337,6 +349,15 @@ const addCopyEvent = function () {
       const fn = () => {
         const url = item.getAttribute('url')
         navigator.clipboard.writeText(url)
+        const div = document.createElement('div')
+        const span = document.createElement('span')
+        span.innerText = '复制成功'
+        div.classList.add('copy-box')
+        div.appendChild(span)
+        document.body.appendChild(div)
+        setTimeout(() => {
+          document.body.removeChild(div)
+        }, 1500)
       }
       item.removeEventListener('click', fn)
       item.addEventListener('click', fn)

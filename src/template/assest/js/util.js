@@ -1,4 +1,3 @@
-
 export const changeTemplate = (item, apiObj) => {
   let template = ''
   if (item.isDir) {
@@ -15,11 +14,12 @@ export const changeTemplate = (item, apiObj) => {
     if (item.children && item.children.length) {
       const textChild = item.children.filter((child) => !child.isDir)
       const dirChild = item.children.filter((child) => child.isDir)
-      template += `<div class="text">`
-      textChild.forEach((child) => {
-        const params = child
-        apiObj['nav' + child.id] = params
-        template += `
+      if (textChild.length) {
+        template += `<div class="text">`
+        textChild.forEach((child) => {
+          const params = child
+          apiObj['nav' + child.id] = params
+          template += `
         <div class="title" id="nav${child.id}">
           <div class="icon">
             <img src="./assest/images/text.png" alt="" />
@@ -27,8 +27,9 @@ export const changeTemplate = (item, apiObj) => {
           <div class="name">${child.title || child.info.title || '未命名'}</div>
         </div>
         `
-      })
-      template += `</div>`
+        })
+        template += `</div>`
+      }
       dirChild.forEach((child) => {
         template += `
         <div class="item" id="dir${child.id}">

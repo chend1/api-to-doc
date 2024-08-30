@@ -1,231 +1,814 @@
 [
   {
-    "group": "base",
+    "info": {
+      "title": "仓库管理系统接口文档",
+      "desc": "仓库管理系统接口文档",
+      "apiUrl": "http://localhost:3000/api"
+    },
+    "group": "",
     "groupName": "",
+    "groupParent": "",
+    "params": [],
+    "returnParams": [],
+    "headerParsms": [],
+    "successExample": "",
+    "failExample": "",
+    "codeList": [],
+    "api_key": "",
+    "remark": ""
+  },
+  {
+    "group": "power",
+    "groupName": "权限管理",
+    "groupParent": "power",
+    "isDir": true,
+    "children": [
+      {
+        "group": "menu",
+        "groupName": "菜单管理",
+        "groupParent": "power",
+        "isDir": true,
+        "children": [
+          {
+            "group": "menu",
+            "groupName": "菜单管理",
+            "groupParent": "power",
+            "groupParentName": "权限管理",
+            "info": {
+              "title": "菜单列表",
+              "desc": "获取菜单列表",
+              "url": "/menu/list",
+              "method": "{get}",
+              "apiUrl": "",
+              "successExample": " { \"data\": {list: []} } "
+            },
+            "params": [],
+            "returnParams": [],
+            "headerParsms": [],
+            "successExample": "",
+            "failExample": "",
+            "codeList": [],
+            "api_key": "",
+            "remark": "",
+            "title": "",
+            "id": "m0gf9ju0xnm"
+          },
+          {
+            "group": "menu",
+            "groupName": "菜单管理",
+            "groupParent": "power",
+            "groupParentName": "",
+            "info": {
+              "title": "新增菜单",
+              "desc": "新增菜单",
+              "url": "/menu/add",
+              "method": "{post}",
+              "apiUrl": "",
+              "successExample": " { \"data\": {message: \"添加成功\"} } "
+            },
+            "params": [],
+            "returnParams": [],
+            "headerParsms": [],
+            "successExample": "",
+            "failExample": "",
+            "codeList": [],
+            "api_key": "",
+            "remark": "",
+            "title": "",
+            "id": "m0gf9ju092c"
+          },
+          {
+            "group": "menu",
+            "groupName": "菜单管理",
+            "groupParent": "power",
+            "groupParentName": "",
+            "info": {
+              "title": "编辑菜单",
+              "desc": "编辑菜单",
+              "url": "/menu/edit",
+              "method": "{post}",
+              "apiUrl": "",
+              "successExample": ""
+            },
+            "params": [],
+            "returnParams": [],
+            "headerParsms": [],
+            "successExample": " { \"status\": true, \"code\": 1001, \"msg\": \"success\", \"data\": { \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJuY3l5bXQiLCJhdWQiOiJuY3l5bXQiLCJpYXQiOjE2NTgyMTExNTcsIm5iZiI6MTY1O DIxMTE1NywiZXhwIjoxNjU4Mjk3NTU3LCJ1aWQiOjEsIm5hbWUiOiJcdTVmMjBcdTRlMDkifQ.YTMNgnc5F1YokFkB16V7xJIC4Q6N2B_645T71WbwczA\" } } ",
+            "failExample": "",
+            "codeList": [],
+            "api_key": "",
+            "remark": "",
+            "title": "",
+            "id": "m0gf9ju0urs"
+          },
+          {
+            "group": "menu",
+            "groupName": "菜单管理",
+            "groupParent": "power",
+            "groupParentName": "",
+            "info": {
+              "title": "删除菜单",
+              "desc": "删除菜单",
+              "url": "/menu/delete",
+              "method": "{post}",
+              "apiUrl": ""
+            },
+            "params": [],
+            "returnParams": [],
+            "headerParsms": [],
+            "successExample": "",
+            "failExample": "",
+            "codeList": [],
+            "api_key": "",
+            "remark": "",
+            "title": "",
+            "id": "m0gf9ju06ku"
+          }
+        ],
+        "id": "m0gf9ju0xnm"
+      }
+    ],
+    "id": "m0gf9ju0fjr"
+  },
+  {
+    "group": "add",
+    "groupName": "入库单管理",
     "groupParent": "",
     "isDir": true,
     "children": [
       {
-        "group": "base",
-        "groupName": "",
+        "group": "add",
+        "groupName": "入库单管理",
         "groupParent": "",
+        "groupParentName": "",
         "info": {
-          "title": "",
-          "desc": "获取用户信息",
-          "url": "/account/info",
+          "title": "入库单列表",
+          "desc": "获取入库单列表",
+          "url": "/add/storage/list",
           "method": "{get}",
-          "apiUrl": "",
-          "successExample": "\n      HTTP/1.1 200 OK\n      {\n        \"companyInfo\": {\n          \"id\": 1,\n          \"name\": \"测试公司\",\n          \"account\": \"\",\n          \"company_id\": \"\",\n          \"avatar\": \"\",\n          \"phone\": \"\",\n          \"role_id\": \"\",\n          \"role_level\": \"\",\n          \"show_company_id\": \"\",\n         },\n        \"info\": {},\n        \"menu\": [],\n      }\n \n \n "
+          "apiUrl": ""
         },
         "params": [],
-        "returnParams": [],
-        "successExample": "",
-        "failExample": "",
-        "id": "m037hgff6bccp"
-      },
-      {
-        "group": "base",
-        "groupName": "",
-        "groupParent": "",
-        "info": {
-          "title": "登录",
-          "desc": "用户登录",
-          "url": "/login",
-          "method": "{post}",
-          "apiUrl": "",
-          "successExample": "\n      HTTP/1.1 200 OK\n      {\n        \"token\": \"\",\n      }\n \n "
-        },
-        "params": [
-          {
-            "field": "account",
-            "type": "{String}",
-            "desc": "账号\n",
-            "require": false,
-            "values": "",
-            "default": ""
-          },
-          {
-            "field": "password",
-            "type": "{String}",
-            "desc": "密码\n",
-            "require": false,
-            "values": "",
-            "default": ""
-          }
+        "returnParams": [
+          { "type": "Object", "filed": "data", "desc": "数据", "sort": "" }
         ],
-        "returnParams": [],
+        "headerParsms": [],
         "successExample": "",
         "failExample": "",
-        "id": "m037hgffkvsrg"
+        "codeList": [],
+        "api_key": "getAddStorageList",
+        "remark": "",
+        "title": "",
+        "id": "m0gf9ju0wv5"
       },
       {
-        "group": "base",
-        "groupName": "",
+        "group": "add",
+        "groupName": "入库单管理",
         "groupParent": "",
+        "groupParentName": "",
         "info": {
-          "title": "用户注册",
-          "desc": "用户注册",
-          "url": "/register",
+          "title": "入库单编号",
+          "desc": "获取入库单编号",
+          "url": "/add/storage/code",
+          "method": "{get}",
+          "apiUrl": ""
+        },
+        "params": [],
+        "returnParams": [
+          { "type": "Object", "filed": "data", "desc": "数据", "sort": "" },
+          { "type": "string", "filed": "+code", "desc": "编号", "sort": "1" }
+        ],
+        "headerParsms": [],
+        "successExample": "",
+        "failExample": "",
+        "codeList": [],
+        "api_key": "getAddStorageCode",
+        "remark": "",
+        "title": "",
+        "id": "m0gf9ju063x"
+      },
+      {
+        "group": "add",
+        "groupName": "入库单管理",
+        "groupParent": "",
+        "groupParentName": "",
+        "info": {
+          "title": "入库单详情列表",
+          "desc": "入库统计，一年中各月份返回入库产品数量",
+          "url": "/add/storage/details/list",
+          "method": "{get}",
+          "apiUrl": ""
+        },
+        "params": [],
+        "returnParams": [
+          { "type": "Object", "filed": "data", "desc": "数据", "sort": "" },
+          { "type": "Array", "filed": "list", "desc": "[]", "sort": "1" }
+        ],
+        "headerParsms": [],
+        "successExample": "",
+        "failExample": "",
+        "codeList": [],
+        "api_key": "getAddStorageDetailsList",
+        "remark": "",
+        "title": "",
+        "id": "m0gf9ju0g4v"
+      },
+      {
+        "group": "add",
+        "groupName": "入库单管理",
+        "groupParent": "",
+        "groupParentName": "",
+        "info": {
+          "title": "新增入库单",
+          "desc": "新增入库单",
+          "url": "/add/storage/add",
           "method": "{post}",
           "apiUrl": ""
         },
         "params": [
           {
-            "field": "account",
-            "type": "{String}",
-            "desc": "账号\n",
-            "require": false,
-            "values": "",
-            "default": ""
-          },
-          {
-            "field": "password",
-            "type": "{String}",
-            "desc": "密码\n",
-            "require": false,
-            "values": "",
-            "default": ""
-          },
-          {
-            "field": "name",
-            "type": "{String}",
-            "desc": "用户名\n",
-            "require": false,
-            "values": "",
-            "default": ""
-          },
-          {
-            "field": "[email]",
-            "type": "{String}",
-            "desc": "邮箱\n",
+            "field": "add_time",
+            "type": "string",
+            "desc": "入库时间",
             "require": true,
             "values": "",
             "default": ""
           },
           {
-            "field": "[phone]",
-            "type": "{String}",
-            "desc": "手机号\n",
+            "field": "add_code",
+            "type": "string",
+            "desc": "入库编号",
             "require": true,
             "values": "",
             "default": ""
           },
           {
-            "field": "[avatar]",
-            "type": "{String}",
-            "desc": "头像\n",
+            "field": "deal_company_id",
+            "type": "string",
+            "desc": "往来单位id",
             "require": true,
-            "values": "\n",
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "productList",
+            "type": "string",
+            "desc": "入库产品列表，json传输",
+            "require": true,
+            "values": "\"[{...},{...}]\"",
+            "default": ""
+          },
+          {
+            "field": "+product_id",
+            "type": "string",
+            "desc": "产品id",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "+product_spec_id",
+            "type": "string",
+            "desc": "产品规格id",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "+product_num",
+            "type": "string",
+            "desc": "产品数量",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "+product_price",
+            "type": "string",
+            "desc": "产品价格",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "+desc",
+            "type": "string",
+            "desc": "产品描述",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "deal_company_name",
+            "type": "string",
+            "desc": "往来单位名称",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "description",
+            "type": "string",
+            "desc": "描述",
+            "require": false,
+            "values": "",
             "default": ""
           }
         ],
-        "returnParams": [],
+        "returnParams": [
+          { "type": "Object", "filed": "data", "desc": "数据", "sort": "" },
+          {
+            "type": "String",
+            "filed": "message",
+            "desc": "新增成功",
+            "sort": ""
+          }
+        ],
+        "headerParsms": [],
         "successExample": "",
         "failExample": "",
-        "id": "m037hgffi32xc"
+        "codeList": [],
+        "api_key": "addAddStorage",
+        "remark": "",
+        "title": "",
+        "id": "m0gf9ju0v6i"
       },
       {
-        "group": "base",
-        "groupName": "",
+        "group": "add",
+        "groupName": "入库单管理",
         "groupParent": "",
+        "groupParentName": "",
         "info": {
-          "title": "编辑用户",
-          "desc": "编辑用户信息",
-          "url": "/account/edit/info",
+          "title": "修改入库单",
+          "desc": "修改入库单基本信息",
+          "url": "/add/storage/edit",
           "method": "{post}",
           "apiUrl": ""
         },
         "params": [
           {
-            "field": "[name]",
-            "type": "{String}",
-            "desc": "用户名\n",
+            "field": "add_time",
+            "type": "string",
+            "desc": "入库时间",
             "require": true,
             "values": "",
             "default": ""
           },
           {
-            "field": "[email]",
-            "type": "{String}",
-            "desc": "邮箱\n",
+            "field": "add_code",
+            "type": "string",
+            "desc": "入库编号",
             "require": true,
             "values": "",
             "default": ""
           },
           {
-            "field": "[phone]",
-            "type": "{String}",
-            "desc": "手机号\n",
+            "field": "deal_company_id",
+            "type": "string",
+            "desc": "往来单位id",
             "require": true,
             "values": "",
             "default": ""
           },
           {
-            "field": "[avatar]",
-            "type": "{String}",
-            "desc": "头像\n",
+            "field": "productList",
+            "type": "string",
+            "desc": "入库产品列表，json传输",
             "require": true,
+            "values": "\"[{...},{...}]\"",
+            "default": ""
+          },
+          {
+            "field": "+product_num",
+            "type": "string",
+            "desc": "产品数量",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "+product_price",
+            "type": "string",
+            "desc": "产品价格",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "+id",
+            "type": "string",
+            "desc": "产品规格id",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "+product_id",
+            "type": "string",
+            "desc": "产品id",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "+product_spec_id",
+            "type": "string",
+            "desc": "产品规格id",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "+desc",
+            "type": "string",
+            "desc": "产品描述",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "deal_company_name",
+            "type": "string",
+            "desc": "往来单位名称",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "description",
+            "type": "string",
+            "desc": "描述",
+            "require": false,
             "values": "",
             "default": ""
           }
         ],
-        "returnParams": [],
+        "returnParams": [
+          { "type": "Object", "filed": "data", "desc": "数据", "sort": "" },
+          {
+            "type": "String",
+            "filed": "message",
+            "desc": "修改成功",
+            "sort": ""
+          }
+        ],
+        "headerParsms": [],
         "successExample": "",
         "failExample": "",
-        "id": "m037hgffzoa7g"
+        "codeList": [],
+        "api_key": "editAddStorage",
+        "remark": "",
+        "title": "",
+        "id": "m0gf9ju0scv"
       },
       {
-        "group": "base5",
-        "groupName": "测试",
-        "groupParent": "base",
-        "isDir": true,
-        "children": [
+        "group": "add",
+        "groupName": "入库单管理",
+        "groupParent": "",
+        "groupParentName": "",
+        "info": {
+          "title": "删除入库单",
+          "desc": "删除入库单",
+          "url": "/add/storage/delete",
+          "method": "{post}",
+          "apiUrl": ""
+        },
+        "params": [
           {
-            "group": "base5",
-            "groupName": "测试",
-            "groupParent": "base",
-            "info": {
-              "title": "编辑密码",
-              "desc": "编辑密码",
-              "url": "/account/edit/password",
-              "method": "{post}",
-              "apiUrl": ""
-            },
-            "params": [
-              {
-                "field": "old_password",
-                "type": "{String}",
-                "desc": "旧密码\n",
-                "require": false,
-                "values": "",
-                "default": ""
-              },
-              {
-                "field": "password",
-                "type": "{String}",
-                "desc": "新密码\n",
-                "require": false,
-                "values": "",
-                "default": ""
-              },
-              {
-                "field": "repeat_password",
-                "type": "{String}",
-                "desc": "重复密码\n",
-                "require": false,
-                "values": "",
-                "default": ""
-              }
-            ],
-            "returnParams": [],
-            "successExample": "",
-            "failExample": "",
-            "id": "m037hgff1exe6"
+            "field": "id",
+            "type": "number",
+            "desc": "入库单id",
+            "require": true,
+            "values": "",
+            "default": ""
           }
         ],
-        "id": "m037hgff1exe6"
+        "returnParams": [
+          { "type": "Object", "filed": "data", "desc": "数据", "sort": "" },
+          {
+            "type": "string",
+            "filed": "message",
+            "desc": "删除成功",
+            "sort": ""
+          }
+        ],
+        "headerParsms": [],
+        "successExample": "",
+        "failExample": "",
+        "codeList": [],
+        "api_key": "deleteAddStorage",
+        "remark": "",
+        "title": "",
+        "id": "m0gf9ju0nxe"
+      },
+      {
+        "group": "add",
+        "groupName": "入库单管理",
+        "groupParent": "",
+        "groupParentName": "",
+        "info": {
+          "title": "入库单详情",
+          "desc": "获取入库单详情",
+          "url": "/add/storage/details",
+          "method": "{post}",
+          "apiUrl": ""
+        },
+        "params": [
+          {
+            "field": "id",
+            "type": "number",
+            "desc": "入库单id",
+            "require": true,
+            "values": "",
+            "default": ""
+          }
+        ],
+        "returnParams": [
+          { "type": "Object", "filed": "data", "desc": "数据", "sort": "" },
+          { "type": "Array", "filed": "+list", "desc": "[]", "sort": "" }
+        ],
+        "headerParsms": [],
+        "successExample": "",
+        "failExample": "",
+        "codeList": [],
+        "api_key": "getAddStoragedetails",
+        "remark": "",
+        "title": "",
+        "id": "m0gf9ju0fwt"
+      },
+      {
+        "group": "add",
+        "groupName": "入库单管理",
+        "groupParent": "",
+        "groupParentName": "",
+        "info": {
+          "title": "审核入库单",
+          "desc": "审核入库单",
+          "url": "/add/storage/audit",
+          "method": "{post}",
+          "apiUrl": ""
+        },
+        "params": [
+          {
+            "field": "status",
+            "type": "number",
+            "desc": "审核状态",
+            "require": true,
+            "values": "1通过，2拒绝",
+            "default": ""
+          },
+          {
+            "field": "audit_id",
+            "type": "string",
+            "desc": "审核人",
+            "require": false,
+            "values": "当前用户",
+            "default": ""
+          },
+          {
+            "field": "refuse_reason",
+            "type": "string",
+            "desc": "拒绝意见",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "productList",
+            "type": "string",
+            "desc": "产品列表",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "+product_num",
+            "type": "string",
+            "desc": "产品数量",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "+product_price",
+            "type": "string",
+            "desc": "产品价格",
+            "require": false,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "+product_spec_id",
+            "type": "string",
+            "desc": "产品规格id",
+            "require": false,
+            "values": "",
+            "default": ""
+          }
+        ],
+        "returnParams": [
+          { "type": "Object", "filed": "data", "desc": "数据", "sort": "" },
+          {
+            "type": "string",
+            "filed": "message",
+            "desc": "审核成功",
+            "sort": ""
+          }
+        ],
+        "headerParsms": [],
+        "successExample": "",
+        "failExample": "",
+        "codeList": [],
+        "api_key": "auditAddStorage",
+        "remark": "",
+        "title": "",
+        "id": "m0gf9ju05tr"
+      },
+      {
+        "group": "add",
+        "groupName": "入库单管理",
+        "groupParent": "",
+        "groupParentName": "",
+        "info": {
+          "title": "新增入库单产品",
+          "desc": "新增入库单产品",
+          "url": "/add/storage/details/add",
+          "method": "{post}",
+          "apiUrl": ""
+        },
+        "params": [
+          {
+            "field": "add_id",
+            "type": "number",
+            "desc": "入库单id",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "product_id",
+            "type": "string",
+            "desc": "产品id",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "product_spec_id",
+            "type": "string",
+            "desc": "产品规格id",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "product_num",
+            "type": "string",
+            "desc": "产品数量",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "product_price",
+            "type": "string",
+            "desc": "产品价格",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "desc",
+            "type": "string",
+            "desc": "产品描述",
+            "require": false,
+            "values": "",
+            "default": ""
+          }
+        ],
+        "returnParams": [
+          { "type": "Object", "filed": "data", "desc": "数据", "sort": "" },
+          {
+            "type": "string",
+            "filed": "message",
+            "desc": "新增入库单产品成功",
+            "sort": ""
+          }
+        ],
+        "headerParsms": [],
+        "successExample": "",
+        "failExample": "",
+        "codeList": [],
+        "api_key": "addAddStoragedetails",
+        "remark": "",
+        "title": "",
+        "id": "m0gf9ju08ms"
+      },
+      {
+        "group": "add",
+        "groupName": "入库单管理",
+        "groupParent": "",
+        "groupParentName": "",
+        "info": {
+          "title": "修改入库单产品",
+          "desc": "修改入库单产品",
+          "url": "/add/storage/details/edit",
+          "method": "{post}",
+          "apiUrl": ""
+        },
+        "params": [
+          {
+            "field": "id",
+            "type": "number",
+            "desc": "数据id",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "product_num",
+            "type": "string",
+            "desc": "产品数量",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "product_price",
+            "type": "string",
+            "desc": "产品价格",
+            "require": true,
+            "values": "",
+            "default": ""
+          },
+          {
+            "field": "desc",
+            "type": "string",
+            "desc": "产品描述",
+            "require": false,
+            "values": "",
+            "default": ""
+          }
+        ],
+        "returnParams": [
+          { "type": "Object", "filed": "data", "desc": "数据", "sort": "" },
+          {
+            "type": "string",
+            "filed": "message",
+            "desc": "修改入库单产品成功",
+            "sort": ""
+          }
+        ],
+        "headerParsms": [],
+        "successExample": "",
+        "failExample": "",
+        "codeList": [],
+        "api_key": "editAddStorageDetails",
+        "remark": "",
+        "title": "",
+        "id": "m0gf9ju03pa"
+      },
+      {
+        "group": "add",
+        "groupName": "入库单管理",
+        "groupParent": "",
+        "groupParentName": "",
+        "info": {
+          "title": "删除入库单产品",
+          "desc": "删除入库单产品",
+          "url": "/add/storage/details/delete",
+          "method": "{post}",
+          "apiUrl": ""
+        },
+        "params": [
+          {
+            "field": "id",
+            "type": "number",
+            "desc": "数据id",
+            "require": true,
+            "values": "",
+            "default": ""
+          }
+        ],
+        "returnParams": [
+          { "type": "Object", "filed": "data", "desc": "数据", "sort": "" },
+          {
+            "type": "string",
+            "filed": "message",
+            "desc": "删除入库单产品成功",
+            "sort": ""
+          }
+        ],
+        "headerParsms": [],
+        "successExample": "",
+        "failExample": "",
+        "codeList": [],
+        "api_key": "deleteAddStoragedetails",
+        "remark": "",
+        "title": "",
+        "id": "m0gf9ju0zh6"
       }
     ],
-    "id": "m037hgff6bccp"
+    "id": "m0gf9ju0wv5"
   }
 ]
