@@ -217,7 +217,7 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
           case '@api':
             obj.info.title = itemList[3]
             obj.info.url = itemList[2]
-            obj.info.method = itemList[1]
+            obj.info.method = itemList[1].replace(/[\{\}]/g, '').toUpperCase()
             break
           case '@apiTitle':
             obj.title = itemList[1]

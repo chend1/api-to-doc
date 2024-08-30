@@ -315,6 +315,7 @@ body .box .right .api-option .example {
   padding: 20px 10px;
   overflow: auto;
   font-size: 12px;
+  min-height: 80px;
 }
 body .box .right .api-option .example code {
   width: 100%;
