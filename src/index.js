@@ -306,16 +306,37 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
       objList.push(obj)
     })
     const textPath = path.join(__dirname, './template/data.json')
-    if (apiBaseInfo.order && apiBaseInfo.order.length) {
+    let orderList = []
+    if (apiBaseInfo.order && Array.isArray(apiBaseInfo.order)) {
+      orderList = apiBaseInfo.order.filter((item) => item)
+    }
+    if (orderList.length) {
       objList.sort((a, b) => {
-        const order = apiBaseInfo.order.indexOf(a.api_key)
-        const order2 = apiBaseInfo.order.indexOf(b.api_key)
+        const keya = a.api_key || a.group
+        const keyb = b.api_key || b.group
+        const order = orderList.indexOf(keya)
+        const order2 = orderList.indexOf(keyb)
         if (order !== -1 && order2 === -1) return -1
         if (order === -1 && order2 !== -1) return 1
         return order - order2
       })
     }
     const menuList = getMenuList(objList)
+    let sortList = menuList
+    if (orderList.length) {
+      sortList = []
+      const list = []
+      menuList.forEach((item) => {
+        const key = item.api_key || item.group
+        const order = orderList.indexOf(key)
+        if (order !== -1) {
+          sortList[order] = item
+        } else {
+          list.push(item)
+        }
+      })
+      sortList = sortList.concat(list).filter((item) => item)
+    }
     if (apiBaseInfo.url) {
       const apiInfo = {
         info: {
@@ -335,9 +356,12 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
         api_key: '',
         remark: '',
       }
-      menuList.unshift(apiInfo)
+      const id =
+        Date.now().toString(36) + Math.random().toString(36).substring(2, 5)
+      apiInfo.id = id
+      sortList.unshift(apiInfo)
     }
-    fs.writeFileSync(textPath, JSON.stringify(menuList))
+    fs.writeFileSync(textPath, JSON.stringify(sortList))
     // 将template目录下的文件复制到output目录下
     const templatePath = path.join(__dirname, './template')
     copyFolderContents(templatePath, outputPath)
