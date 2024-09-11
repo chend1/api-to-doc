@@ -141,7 +141,14 @@ const getMenuList = (list) => {
 
 // 转换code
 const convertCode = (code, label, type) => {
-  let htmlStr = `<div class="start">${
+  let htmlStr = ''
+  if (Object.keys(obj).length === 0) {
+    htmlStr = `<div class="start">${
+      label ? '<span class="label">"' + label + '":</span>' : ''
+    }${type === 'array' ? '[]' : '{}'}</div>`
+    return htmlStr
+  }
+  htmlStr = `<div class="start">${
     label ? '<span class="label">"' + label + '":</span>' : ''
   }${type === 'array' ? '[' : '{'}</div>`
   try {

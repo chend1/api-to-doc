@@ -324,8 +324,8 @@ body .box .right .api-option .example code {
 body .box .right .api-option .example .start,
 body .box .right .api-option .example .end {
   padding-left: 8px;
-  color: #fff;
-  line-height: 28px;
+  color: #d1d2d2;
+  line-height: 20px;
 }
 body .box .right .api-option .example .start .label,
 body .box .right .api-option .example .end .label {
@@ -337,8 +337,8 @@ body .box .right .api-option .example .option {
   max-width: 100%;
   display: flex;
   box-sizing: border-box;
-  padding-left: 20px;
-  line-height: 28px;
+  padding-left: 26px;
+  line-height: 20px;
   margin: 0;
   overflow: hidden;
 }
