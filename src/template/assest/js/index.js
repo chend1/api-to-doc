@@ -3,7 +3,7 @@ import { changeTemplate, findText } from './util.js'
 // 通过id存储对应的接口信息
 const apiObj = {}
 // 存储展开的菜单
-const activeList = new Set()
+let activeList = new Set()
 // 切换菜单
 const toggleList = (id) => {
   const navItem = document.getElementById(id)

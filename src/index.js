@@ -141,19 +141,27 @@ const getMenuList = (list) => {
 
 // 转换code
 const convertCode = (code, label, type) => {
-  let htmlStr = ''
-  if (Object.keys(obj).length === 0) {
-    htmlStr = `<div class="start">${
-      label ? '<span class="label">"' + label + '":</span>' : ''
-    }${type === 'array' ? '[]' : '{}'}</div>`
-    return htmlStr
-  }
-  htmlStr = `<div class="start">${
-    label ? '<span class="label">"' + label + '":</span>' : ''
-  }${type === 'array' ? '[' : '{'}</div>`
   try {
     const obj = JSON.parse(code)
+    const length = Object.keys(obj).length
+    let htmlStr = ''
+    if (length === 0) {
+      htmlStr = `<div class="start">${
+        label ? '<span class="label">"' + label + '":</span>' : ''
+      }${type === 'array' ? '[ ],' : '{ },'}</div>`
+      return htmlStr
+    }
+    htmlStr = `<div class="start">${
+      label ? '<span class="label">"' + label + '":</span>' : ''
+    }${type === 'array' ? '[' : '{'}</div>`
+
+    let currentIndex = 0
+    let unit = ','
     Object.keys(obj).forEach((key) => {
+      currentIndex++
+      if (currentIndex === length) {
+        unit = ''
+      }
       if (typeof obj[key] === 'object') {
         htmlStr += `<div class="child">`
         const type = Array.isArray(obj[key]) ? 'array' : 'object'
@@ -165,12 +173,12 @@ const convertCode = (code, label, type) => {
           <div class="label">"${key}": </div>
           <div class="value ${typeof obj[key]}">${
           typeof obj[key] !== 'string' ? obj[key] : JSON.stringify(obj[key])
-        }</div>
+        }${unit}</div>
         </div>
       `
       }
     })
-    htmlStr += `<div class="end">${type === 'array' ? ']' : '}'}</div>`
+    htmlStr += `<div class="end">${type === 'array' ? '],' : '},'}</div>`
     return htmlStr
   } catch (err) {
     return code
@@ -283,13 +291,23 @@ export default function createDoc(filePath, outputPath, apiBaseInfo) {
           case '@apiSuccessExample':
             {
               const example = item.split('Success-Response:')
-              obj.successExample = convertCode(example[1])
+              let codeStr = convertCode(example[1])
+              const idx1 = codeStr.lastIndexOf(',')
+              codeStr = codeStr.slice(0, idx1) + codeStr.slice(idx1 + 1)
+              const idx2 = codeStr.lastIndexOf(',')
+              codeStr = codeStr.slice(0, idx2) + codeStr.slice(idx2 + 1)
+              obj.successExample = codeStr
             }
             break
           case '@apiFailExample':
             {
               const example = item.split('Fail-Response:')
-              obj.failExample = convertCode(example[1])
+              let codeStr = convertCode(example[1])
+              const idx1 = codeStr.lastIndexOf(',')
+              codeStr = codeStr.slice(0, idx1) + codeStr.slice(idx1 + 1)
+              const idx2 = codeStr.lastIndexOf(',')
+              codeStr = codeStr.slice(0, idx2) + codeStr.slice(idx2 + 1)
+              obj.failExample = codeStr
             }
             break
           case '@apiCode':
